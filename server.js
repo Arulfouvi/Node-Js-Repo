@@ -1,11 +1,28 @@
-const http = require ('http')
+const http = require("http");
+const todo = [
+  {
+    id: 1,
+    text: "todo app",
+  },
+  {
+    id: 2,
+    text: "todo app two",
+  },
+  {
+    id: 3,
+    text: "todo app three",
+  },
+];
 
-const server = http.createServer((req,res)=>{
-    console.log(req.method);
-    res.end()
-})
+const server = http.createServer((req, res) => {
+  res.setHeader("content-type", "application/json");
 
-const PORT =4000
+  res.end(JSON.stringify({
+    "success":true,
+    data:todo
+  }));
+});
 
+const PORT = 4000;
 
-server.listen(PORT,()=>console.log(`server is running ${PORT}`))
+server.listen(PORT, () => console.log(`server is running ${PORT}`));
